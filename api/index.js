@@ -2,11 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-// 配置 CORS：允许前端实际域名访问（即 https://login-sx-mkf6.vercel.app）
+// 配置 CORS，允许前端域名访问
 app.use(cors({
-  origin: 'https://login-sx-mkf6.vercel.app', 
+  origin: 'https://login-sx-mkf6.vercel.app',
   methods: ['POST', 'OPTIONS'],
-  credentials: true 
+  credentials: true
 }));
 
 app.use(express.json());
@@ -29,8 +29,6 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-// 处理预检请求（OPTIONS 方法）
 app.options('/api/login', cors());
 
-// 无需手动监听端口，Vercel 自动处理
 module.exports = app;
